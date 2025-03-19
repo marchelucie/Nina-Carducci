@@ -12,7 +12,23 @@
 	<script src="./assets/bootstrap/bootstrap.bundle.js"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 	<script src="./assets/maugallery.js" defer></script>
-	<script src="./assets/scripts.js" defer></script>
+	<script>
+	$(document).ready(function() {
+		$('.gallery').mauGallery({
+			columns: {
+				xs: 1,
+				sm: 2,
+				md: 3,
+				lg: 3,
+				xl: 3
+			},
+			lightBox: true,
+			lightboxId: 'myAwesomeLightbox',
+			showTags: true,
+			tagsPosition: 'top'
+		});
+	});
+	</script>
 </head>
 <body>
 <div class="top-header">
