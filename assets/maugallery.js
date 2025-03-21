@@ -49,11 +49,13 @@
     navigation: true
   };
   $.fn.mauGallery.listeners = function(options) {
-    $(".gallery-item").on("click", function() {
-      if (options.lightBox && $(this).prop("tagName") === "IMG") {
-        $.fn.mauGallery.methods.openLightBox($(this), options.lightboxId);
-      } else {
-        return;
+    $(".gallery-item").on("click keydown", function(event) {
+      if (event.type==="click" || event.key === "Enter") {
+        if (options.lightBox && $(this).prop("tagName") === "IMG") {
+          $.fn.mauGallery.methods.openLightBox($(this), options.lightboxId);
+        } else {
+          return;
+        }
       }
     });
 
@@ -220,10 +222,10 @@
     },
     showItemTags(gallery, position, tags) {
       var tagItems =
-        '<li class="nav-item"><span class="nav-link active active-tag"  data-images-toggle="all">Tous</span></li>';
+        '<li class="nav-item"><span class="nav-link active active-tag"  data-images-toggle="all" tabindex=0>Tous</span></li>';
       $.each(tags, function(index, value) {
         tagItems += `<li class="nav-item active">
-                <span class="nav-link"  data-images-toggle="${value}">${value}</span></li>`;
+                <span class="nav-link"  data-images-toggle="${value}" tabindex=0>${value}</span></li>`;
       });
       var tagsRow = `<ul class="my-4 tags-bar nav nav-pills">${tagItems}</ul>`;
 
@@ -259,5 +261,5 @@
         }
       });
     }
-  };
-})(jQuery);
+
+}})(jQuery);
