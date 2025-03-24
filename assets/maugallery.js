@@ -50,7 +50,7 @@
   };
   $.fn.mauGallery.listeners = function(options) {
     $(".gallery-item").on("click keydown", function(event) {
-      if (event.type==="click" || event.key === "Enter") {
+      if (event.type ==="click" || event.key === "Enter") {
         if (options.lightBox && $(this).prop("tagName") === "IMG") {
           $.fn.mauGallery.methods.openLightBox($(this), options.lightboxId);
         } else {
@@ -59,13 +59,22 @@
       }
     });
 
-    $(".gallery").on("click", ".nav-link", $.fn.mauGallery.methods.filterByTag);
-    $(".gallery").on("click", ".mg-prev", () =>
-      $.fn.mauGallery.methods.prevImage(options.lightboxId)
-    );
-    $(".gallery").on("click", ".mg-next", () =>
+    $(".gallery").on("click keydown", ".nav-link", function(event) {
+      if (event.key === "Enter" || event.typ ==="click") {
+        $.fn.mauGallery.methods.filterByTag.call(this, event);
+      }
+    });
+    
+    $(".gallery").on("click keydown", ".mg-prev", function(event){
+      if (event.key === "Enter" || event.type ==="click") {
+        $.fn.mauGallery.methods.prevImage(options.lightboxId)
+      }
+    });
+    $(".gallery").on("click keydown", ".mg-next",  function(event){
+      if (event.key === "Enter" || event.type ==="click") {
       $.fn.mauGallery.methods.nextImage(options.lightboxId)
-    );
+      }
+    });
   };
   $.fn.mauGallery.methods = {
     createRowWrapper(element) {
@@ -206,13 +215,13 @@
                         <div class="modal-body">
                             ${
                               navigation
-                                ? '<div class="mg-prev" style="cursor:pointer;position:absolute;top:50%;left:-15px;background:white;"><</div>'
+                                ? '<div class="mg-prev" style="cursor:pointer;position:absolute;top:50%;left:-15px;background:white;" tabindex=0><</div>'
                                 : '<span style="display:none;" />'
                             }
                             <img class="lightboxImage img-fluid" alt="Contenu de l'image affichée dans la modale au clique"/>
                             ${
                               navigation
-                                ? '<div class="mg-next" style="cursor:pointer;position:absolute;top:50%;right:-15px;background:white;}">></div>'
+                                ? '<div class="mg-next" style="cursor:pointer;position:absolute;top:50%;right:-15px;background:white;}" tabindex=0>></div>'
                                 : '<span style="display:none;" />'
                             }
                         </div>
