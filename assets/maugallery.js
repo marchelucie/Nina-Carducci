@@ -60,7 +60,7 @@
     });
 
     $(".gallery").on("click keydown", ".nav-link", function(event) {
-      if (event.key === "Enter" || event.typ ==="click") {
+      if (event.key === "Enter" || event.type ==="click") {
         $.fn.mauGallery.methods.filterByTag.call(this, event);
       }
     });

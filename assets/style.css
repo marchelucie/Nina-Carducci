@@ -105,6 +105,12 @@ body {
 .nav-pills .nav-link {
 	color: #000
 }
+
+.nav-link:hover {
+	color: #BEB45A;
+	cursor : pointer;
+}
+
 .item-column {
 	position: relative;
 	margin-bottom: 0 !important;
